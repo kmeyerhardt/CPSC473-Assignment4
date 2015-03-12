@@ -1,16 +1,18 @@
+// callback function
 window.useData = function(data){
+    var $content = ("<ul>");
     data.forEach(function(element){
         $content.append("<li>").text(element.name);
     });
+    $("main .info").append($content);
 }
 
 var main = function () {
     "use strict";
     
-    var $content = ("<ul>");
+    // url for get
     var url = 'http://quetter.com/api-1.0/json/genre/en';
-    
-    
+    // GET request
     $.ajax({
            type: 'GET',
            url: url,
@@ -18,21 +20,6 @@ var main = function () {
            jsonpCallback: 'useData',
            jsonp: 'callback',
     })
-    
-    
-    /*$.ajax({
-                type: 'GET',
-                url: url,
-                dataType: 'text',
-                success: function(data) {
-                    console.log(JSON.parse(data));
-                    data.forEach(function(element){
-                        $content.append("<li>").text(element.name);
-                    });
-                    $content.append("</ul>");
-                }
-    });*/
-    $("main .info").append($content);
 };
 
 
